@@ -1,0 +1,8 @@
+setup.py
+nbastats/__init__.py
+nbastats/nbastats.py
+nbastats.egg-info/PKG-INFO
+nbastats.egg-info/SOURCES.txt
+nbastats.egg-info/dependency_links.txt
+nbastats.egg-info/requires.txt
+nbastats.egg-info/top_level.txt
