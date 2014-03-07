@@ -50,45 +50,45 @@ This method returns a table with league averages for shots taken and made from e
 ###Customization
 There are quite a few ways to customize the actual data that is collected from the website by adjusting the current code. Each of the potential changes are described below. Some variables have a discrete number of options. The options are listed underneath their respective variables. Default values are in **bold**.
 
-* `PlayerID` - no default value; Required
-* `LeagueID`
+* `playerid` - no default value; Required
+* `leagueid`
 	* **00**
 	* 20
-* `Season` - Input in format of 20XX-XX
+* `season` - Input in format of 20XX-XX
 	* **2013-14**
-* `SeasonType`
+* `seasontype`
 	* **Regular Season**
 	* Playoffs
 	* All Star
-* `TeamID` - Only useful if a player played on more than one team during a season. Allows you to pull all of the shots taken during a specific season while playing for a specific team. 
+* `teamid` - Only useful if a player played on more than one team during a season. Allows you to pull all of the shots taken during a specific season while playing for a specific team. 
 	* **blank**
-* `GameID` - Used to select shots taken during a specific game
+* `gameid` - Used to select shots taken during a specific game
 	* **blank**
-* `Outcome` - Selects shot taken during games with a specific outcome. 
+* `outcome` - Selects shot taken during games with a specific outcome. 
 	* W
 	* L
 	* **blank**
-* `Location` - Selects shots taken during games played at different locations
+* `location` - Selects shots taken during games played at different locations
 	* Home
 	* Road
 	* **blank**
-* `Month` - Selects shots taken during a specific month. 
+* `month` - Selects shots taken during a specific month. 
 	* **0** (all months)
-* `SeasonSegment` - Selects shots taken during a segment of the season
+* `seasonsegment` - Selects shots taken during a segment of the season
 	* Post All-Star
 	* Pre All-Star
 	* **blank**
-* `DateFrom` - Selects shots taken after a specific date; 2004-01-01 format
+* `datefrom` - Selects shots taken after a specific date; 2004-01-01 format
 	* **blank**
-* `DateTo` - Selects shots taken before a specific date; 2004-01-01 format
+* `dateto` - Selects shots taken before a specific date; 2004-01-01 format
 	* **blank**
-* `OpponentTeamID` - Selects shots taken against a specific team
+* `opponentteamid` - Selects shots taken against a specific team
 	* **blank**
-* `VsConference` - Selects shots taken against a specific conference
+* `vsconf` - Selects shots taken against a specific conference
 	* East
 	* West
 	* **blank**
-* `VsDivision` - Selects shots taken against a specific division
+* `vsdiv` - Selects shots taken against a specific division
 	* Atlantic
 	* Central
 	* Northwest
@@ -98,27 +98,27 @@ There are quite a few ways to customize the actual data that is collected from t
 	* East
 	* West
 	* **blank**
-* `Position` - Selects shots taken when labeled as specific position; not useful
+* `position` - Selects shots taken when labeled as specific position; not useful
 	* Guard
 	* Center
 	* Forward
 	* **blank**
-* `GameSegment` - Selects shots taken during a specific segment of a game
+* `gamesegment` - Selects shots taken during a specific segment of a game
 	* First Half
 	* Overtime
 	* Second Half
 	* **blank**
-* `Period` - Selects shots taken during specific periods of games
+* `period` - Selects shots taken during specific periods of games
 	* **0** returns all shots
 	* Takes values 0-9
-* `LastNGames` - Selects shots taken during past N games; Will not aggregate across seasons
+* `lastngames` - Selects shots taken during past N games; Will not aggregate across seasons
 	* **0** returns all games
-* `AheadBehind` - Selects shots taken during specific situations in a game
+* `aheadbehind` - Selects shots taken during specific situations in a game
 	* Ahead or Behind
 	* Ahead or Tied
 	* Behind or Tied
 	* **blank**
-* `ContextMeasure` - Description
+* `contextmeasure` - Description
 	* FGM
 	* FGA
 	* FG_PCT
@@ -132,7 +132,7 @@ There are quite a few ways to customize the actual data that is collected from t
 	* PTS_OFF_TOV
 	* PTS_2ND_CHANCE
 	* **blank**
-* `ClutchTime` - Selects shots taken during specific "clutch" times during a game
+* `clutchtime` - Selects shots taken during specific "clutch" times during a game
 	* Last 5 Minutes
 	* Last 4 Minutes
 	* Last 3 Minutes
@@ -142,6 +142,12 @@ There are quite a few ways to customize the actual data that is collected from t
 	* Last 10 Seconds
 	* **blank**
 
+
+When you adjust these values, be sure the selected value is included as a string. For example, to select all of Paul George's shots taken during the last minute of every game he played during the 2012-13 season, you would run the following code:
+```python
+george = nbastats.ShotChart('202331', seasonid='2012-13', clutchtime='Last 1 Minute')
+george.shotchart()
+```
 ***
 ##BoxScore Data
 ***
