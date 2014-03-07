@@ -23,7 +23,7 @@ import nbastats.nbastats as nbastats
 
 Once you have the package imported, you can use the following commands to collect data:
 
-<h3>Shot Chart Data</h3>
+##Shot Chart Data
 
 If you wish to see detailed information on a single players shot chart, use the `ShotChart` method. To use this method, you first need the unique id number of the player you are interested in. You can obtain this by finding the player's profile page on `http://stats.nba.com` and looking in the address bar. You may have to click the "stats" tab when you find the players page. For this example, I'll use Paul George. His NBA ID is `202331`.
 ```python
@@ -39,20 +39,23 @@ This code returns the following pandas dataframe:
 
 There are a couple things to note. First, invoking `nbastats.ShotChart('202331')` creates an object that has to unique methods. each of these returns specific data in a `Pandas` dataframe. You can manipulate and adjust all of the data just as you would with a normal `Pandas` dataframe.
 
-####Methods
+###Methods
 
-#####`.shotchart()`
+####`.shotchart()`
 This method of the returns detailed information about all of a players shots that you have chosen. The table above is an example of the type of data that this method returns.
 
-#####`.leagueaverage()`
+####`.leagueaverage()`
 This method returns a table with league averages for shots taken and made from each of the identified zones on the court. This is not player specific information. It is league specific. If you invoke this method for different players during the same time period, the results should be identical.
 
+###Customization
+There are quite a few ways to customize the actual data that is collected from the website by adjusting the current code. Each of the potential changes are described below. Some variables have a discrete number of options. The options are listed underneath their respective variables.
 
 
-`BoxScore`
-
-`GameLog`
-
-`PlayByPlay`
-
-`Lineups`
+***
+##BoxScore Data
+***
+##Player Game Logs
+***
+##Play By Play Data
+***
+##Lineup Data
