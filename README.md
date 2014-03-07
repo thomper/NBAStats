@@ -145,7 +145,7 @@ There are quite a few ways to customize the actual data that is collected from t
 
 When you adjust these values, be sure the selected value is included as a string. For example, to select all of Paul George's shots taken during the last minute of every game he played during the 2012-13 season, you would run the following code:
 ```python
-george = nbastats.ShotChart('202331', seasonid='2012-13', clutchtime='Last 1 Minute')
+george = nbastats.ShotChart('202331', season='2012-13', clutchtime='Last 1 Minute')
 george.shotchart()
 ```
 ***
