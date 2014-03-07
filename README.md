@@ -32,7 +32,7 @@ george.shotchart().head(2)
 ```
 This code returns the following pandas dataframe: 
 
-| index| GRID_TYPE	| GAME_ID | GAME_EVENT_ID | PLAYER_ID | PLAYER_NAME | TEAM_ID | TEAM_NAME | PERIOD | MINUTES_REMAINING | SECONDS_REMAINING | EVENT_TYPE | ACTION_TYPE | SHOT_TYPE | SHOT_ZONE_BASIC | SHOT_ZONE_AREA | SHOT_ZONE_RANGE | SHOT_DISTANCE | LOC_X | LOC_Y | SHOT_ATTEMPTED_FLAG | SHOT_MADE_FLAG |
+| index | GRID_TYPE	| GAME_ID | GAME_EVENT_ID | PLAYER_ID | PLAYER_NAME | TEAM_ID | TEAM_NAME | PERIOD | MINUTES_REMAINING | SECONDS_REMAINING | EVENT_TYPE | ACTION_TYPE | SHOT_TYPE | SHOT_ZONE_BASIC | SHOT_ZONE_AREA | SHOT_ZONE_RANGE | SHOT_DISTANCE | LOC_X | LOC_Y | SHOT_ATTEMPTED_FLAG | SHOT_MADE_FLAG |
 | :----: | ---- | :----: | :----: | :----: | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | 0	| Shot Chart Detail	| 0021300001 | 5 |  202331 | Paul George | 1610612754 | Indiana Pacers | 1 | 11 | 30 | Made Shot | Pullup Jump shot | 2PT Field Goal | Mid-Range | Right Side Center(RC) | 16-24 ft. | 19 | 105 | 164 | 1 | 1 |
 | 1	  | Shot Chart Detail | 0021300001 | 16 | 202331 | Paul George | 1610612754 | Indiana Pacers	| 1	| 10 | 11 | Made Shot | Layup Shot | 2PT Field Goal | Restricted Area | Center(C) | Less Than 8 ft. | 1 | -10 | 3 | 1 | 1 |
