@@ -37,6 +37,15 @@ This code returns the following pandas dataframe:
 | 0	| Shot Chart Detail	| 0021300001 | 5 |  202331 | Paul George | 1610612754 | Indiana Pacers | 1 | 11 | 30 | Made Shot | Pullup Jump shot | 2PT Field Goal | Mid-Range | Right Side Center(RC) | 16-24 ft. | 19 | 105 | 164 | 1 | 1 |
 | 1	  | Shot Chart Detail | 0021300001 | 16 | 202331 | Paul George | 1610612754 | Indiana Pacers	| 1	| 10 | 11 | Made Shot | Layup Shot | 2PT Field Goal | Restricted Area | Center(C) | Less Than 8 ft. | 1 | -10 | 3 | 1 | 1 |
 
+There are a couple things to note. First, invoking `nbastats.ShotChart('202331')` creates an object that has to unique methods. each of these returns specific data in a `Pandas` dataframe. You can manipulate and adjust all of the data just as you would with a normal `Pandas` dataframe.
+
+####Methods
+
+#####`.shotchart()`
+This method of the returns detailed information about all of a players shots that you have chosen. The table above is an example of the type of data that this method returns.
+
+#####`.leagueaverage()`
+This method returns a table with league averages for shots taken and made from each of the identified zones on the court. This is not player specific information. It is league specific. If you invoke this method for different players during the same time period, the results should be identical.
 
 
 
