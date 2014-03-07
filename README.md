@@ -48,8 +48,99 @@ This method of the returns detailed information about all of a players shots tha
 This method returns a table with league averages for shots taken and made from each of the identified zones on the court. This is not player specific information. It is league specific. If you invoke this method for different players during the same time period, the results should be identical.
 
 ###Customization
-There are quite a few ways to customize the actual data that is collected from the website by adjusting the current code. Each of the potential changes are described below. Some variables have a discrete number of options. The options are listed underneath their respective variables.
+There are quite a few ways to customize the actual data that is collected from the website by adjusting the current code. Each of the potential changes are described below. Some variables have a discrete number of options. The options are listed underneath their respective variables. Default values are in **bold**.
 
+* `PlayerID` - no default value; Required
+* `LeagueID`
+	* **00**
+	* 20
+* `Season` - Input in format of 20XX-XX
+	* **2013-14**
+* `SeasonType`
+	* **Regular Season**
+	* Playoffs
+	* All Star
+* `TeamID` - Only useful if a player played on more than one team during a season. Allows you to pull all of the shots taken during a specific season while playing for a specific team. 
+	* **blank**
+* `GameID` - Used to select shots taken during a specific game
+	* **blank**
+* `Outcome` - Selects shot taken during games with a specific outcome. 
+	* W
+	* L
+	* **blank**
+* `Location` - Selects shots taken during games played at different locations
+	* Home
+	* Road
+	* **blank**
+* `Month` - Selects shots taken during a specific month. 
+	* **0** (all months)
+* `SeasonSegment` - Selects shots taken during a segment of the season
+	* Post All-Star
+	* Pre All-Star
+	* **blank**
+* `DateFrom` - Selects shots taken after a specific date; 2004-01-01 format
+	* **blank**
+* `DateTo` - Selects shots taken before a specific date; 2004-01-01 format
+	* **blank**
+* `OpponentTeamID` - Selects shots taken against a specific team
+	* **blank**
+* `VsConference` - Selects shots taken against a specific conference
+	* East
+	* West
+	* **blank**
+* `VsDivision` - Selects shots taken against a specific division
+	* Atlantic
+	* Central
+	* Northwest
+	* Pacific
+	* Southeast
+	* Southwest
+	* East
+	* West
+	* **blank**
+* `Position` - Selects shots taken when labeled as specific position; not useful
+	* Guard
+	* Center
+	* Forward
+	* **blank**
+* `GameSegment` - Selects shots taken during a specific segment of a game
+	* First Half
+	* Overtime
+	* Second Half
+	* **blank**
+* `Period` - Selects shots taken during specific periods of games
+	* **0** returns all shots
+	* Takes values 0-9
+* `LastNGames` - Selects shots taken during past N games; Will not aggregate across seasons
+	* **0** returns all games
+* `AheadBehind` - Selects shots taken during specific situations in a game
+	* Ahead or Behind
+	* Ahead or Tied
+	* Behind or Tied
+	* **blank**
+* `ContextMeasure` - Description
+	* FGM
+	* FGA
+	* FG_PCT
+	* FG3M
+	* FG3A
+	* FG3_PCT
+	* PF
+	* EFG_PCT
+	* TS_PCT
+	* PTS_FB
+	* PTS_OFF_TOV
+	* PTS_2ND_CHANCE
+	* **blank**
+* `ClutchTime` - Selects shots taken during specific "clutch" times during a game
+	* Last 5 Minutes
+	* Last 4 Minutes
+	* Last 3 Minutes
+	* Last 2 Minutes
+	* Last 1 Minute
+	* Last 30 Seconds
+	* Last 10 Seconds
+	* **blank**
 
 ***
 ##BoxScore Data
