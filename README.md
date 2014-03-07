@@ -119,7 +119,7 @@ There are quite a few ways to customize the actual data that is collected from t
 	* Behind or Tied
 	* **blank**
 * `contextmeasure` - Description
-	* FGM
+	* **FGM**
 	* FGA
 	* FG_PCT
 	* FG3M
@@ -131,7 +131,6 @@ There are quite a few ways to customize the actual data that is collected from t
 	* PTS_FB
 	* PTS_OFF_TOV
 	* PTS_2ND_CHANCE
-	* **blank**
 * `clutchtime` - Selects shots taken during specific "clutch" times during a game
 	* Last 5 Minutes
 	* Last 4 Minutes
