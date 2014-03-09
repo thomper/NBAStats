@@ -1,5 +1,8 @@
 import requests
 import pandas as pd
+pd.set_option('notebook_repr_html',True)
+pd.set_option('display.max_columns',300)
+pd.set_option('display.width',3000)
 
 class ShotChart:
     def __init__(self,playerid,leagueid='',season='2013-14', seasontype='Regular Season',teamid=0,gameid='',outcome='',location='',
@@ -130,3 +133,24 @@ class Lineups:
         self._x = self._x.json()
     def line(self):
         return pd.DataFrame(self._x['resultSets'][0]['rowSet'],columns=self._x['resultSets'][0]['headers'])
+
+class LeagueLeaders:
+    def __init__(self, leagueid='00', permode='Per48',statcat='PTS',season='2013-14',seasontype='Regular Season',scope='S'):
+        self._url = "http://stats.nba.com/stats/leagueleaders?"
+        self._api_param = {'LeagueID':leagueid,
+                          'PerMode':permode,
+                          'StatCategory':statcat,
+                          'Season':season,
+                          'SeasonType':seasontype,
+                          'Scope':scope,
+             }
+        self._season = season
+        self._x = requests.get(self._url, params=self._api_param)
+        self._x = self._x.json()
+    def line(self):
+        return pd.DataFrame(self._x['resultSet']['rowSet'],columns=self._x['resultSet']['headers'])
+    def players(self):
+        if self._season == 'All Time':
+            return pd.Series(self.line().PLAYER_NAME.values,index=self.line().PLAYER_ID).to_dict()
+        else:
+            return pd.Series(self.line().PLAYER.values,index=self.line().PLAYER_ID).to_dict()
