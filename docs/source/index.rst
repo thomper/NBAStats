@@ -9,6 +9,6 @@ It was written because the ability to do in-depth analysis on the NBA's website 
 Install
 =======
 
-NBAStats is available from PyPI_. You can install it with pip_ ::
+NBAStats is available from PyPI. You can install it with pip ::
 
   $ pip install nbastats
