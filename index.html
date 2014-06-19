@@ -1,79 +1,390 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Nbadatacollection : NBA Data Collection" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>NBAStats by bradleyfay</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Nbadatacollection</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">NBAStats</h1>
+        <p class="header">Making it easy to collect and analyze NBA statistics</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/bradleyfay/NBADataCollection">View on GitHub</a>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/bradleyfay/NBAStats/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/bradleyfay/NBAStats/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/bradleyfay/NBAStats">View On GitHub</a></li>
+        </ul>
 
-          <h1 id="project_title">Nbadatacollection</h1>
-          <h2 id="project_tagline">NBA Data Collection</h2>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/bradleyfay">bradleyfay</a></p>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/bradleyfay/NBADataCollection/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/bradleyfay/NBADataCollection/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+      </header>
+      <section>
+        <h1>
+<a name="nbastats" class="anchor" href="#nbastats"><span class="octicon octicon-link"></span></a>NBAStats</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>This is a Python module I have put together to make it easier and faster to parse NBA statistics. </p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>version 1.0.1</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>My apologies for the lack of documentation within the package and on here.  That will be coming quickly.</p>
+
+<p>To get started, install the module using the following:
+<code>$ easy_install nbastats</code>
+or 
+<code>$ pip install nbastats</code></p>
+
+<p><em>This module requires the most recent versions of <code>pandas</code> and <code>requests</code>.</em></p>
+
+<p>Once you have <code>NBAStats</code> installed, load it into your python environment using:</p>
+
+<div class="highlight highlight-python"><pre>
+<span class="kn">import</span> <span class="nn">nbastats.nbastats</span> <span class="kn">as</span> <span class="nn">nbastats</span>
+</pre></div>
+
+<p>Once you have the package imported, you can use the following commands to collect data:</p>
+
+<h2>
+<a name="shot-chart-data" class="anchor" href="#shot-chart-data"><span class="octicon octicon-link"></span></a>Shot Chart Data</h2>
+
+<p>If you wish to see detailed information on a single players shot chart, use the <code>ShotChart</code> method. To use this method, you first need the unique id number of the player you are interested in. You can obtain this by finding the player's profile page on <code>http://stats.nba.com</code> and looking in the address bar. You may have to click the "stats" tab when you find the players page. For this example, I'll use Paul George. His NBA ID is <code>202331</code>.</p>
+
+<div class="highlight highlight-python"><pre><span class="n">george</span> <span class="o">=</span> <span class="n">nbastats</span><span class="o">.</span><span class="n">ShotChart</span><span class="p">(</span><span class="s">'202331'</span><span class="p">)</span>
+<span class="n">george</span><span class="o">.</span><span class="n">shotchart</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+<p>This code returns the following pandas dataframe: </p>
+
+<table>
+<thead><tr>
+<th align="center">index</th>
+<th>GRID_TYPE</th>
+<th>GAME_ID</th>
+<th align="center">GAME_EVENT_ID</th>
+<th align="center">PLAYER_ID</th>
+<th align="center">PLAYER_NAME</th>
+<th>TEAM_ID</th>
+<th>TEAM_NAME</th>
+<th>PERIOD</th>
+<th>MINUTES_REMAINING</th>
+<th>SECONDS_REMAINING</th>
+<th>EVENT_TYPE</th>
+<th>ACTION_TYPE</th>
+<th>SHOT_TYPE</th>
+<th>SHOT_ZONE_BASIC</th>
+<th>SHOT_ZONE_AREA</th>
+<th>SHOT_ZONE_RANGE</th>
+<th>SHOT_DISTANCE</th>
+<th>LOC_X</th>
+<th>LOC_Y</th>
+<th>SHOT_ATTEMPTED_FLAG</th>
+<th>SHOT_MADE_FLAG</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td>Shot Chart Detail</td>
+<td>0021300001</td>
+<td align="center">5</td>
+<td align="center">202331</td>
+<td align="center">Paul George</td>
+<td>1610612754</td>
+<td>Indiana Pacers</td>
+<td>1</td>
+<td>11</td>
+<td>30</td>
+<td>Made Shot</td>
+<td>Pullup Jump shot</td>
+<td>2PT Field Goal</td>
+<td>Mid-Range</td>
+<td>Right Side Center(RC)</td>
+<td>16-24 ft.</td>
+<td>19</td>
+<td>105</td>
+<td>164</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td>Shot Chart Detail</td>
+<td>0021300001</td>
+<td align="center">16</td>
+<td align="center">202331</td>
+<td align="center">Paul George</td>
+<td>1610612754</td>
+<td>Indiana Pacers</td>
+<td>1</td>
+<td>10</td>
+<td>11</td>
+<td>Made Shot</td>
+<td>Layup Shot</td>
+<td>2PT Field Goal</td>
+<td>Restricted Area</td>
+<td>Center(C)</td>
+<td>Less Than 8 ft.</td>
+<td>1</td>
+<td>-10</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table><p>There are a couple things to note. First, invoking <code>nbastats.ShotChart('202331')</code> creates an object that has to unique methods. each of these returns specific data in a <code>Pandas</code> dataframe. You can manipulate and adjust all of the data just as you would with a normal <code>Pandas</code> dataframe.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="methods" class="anchor" href="#methods"><span class="octicon octicon-link"></span></a>Methods</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h4>
+<a name="shotchart" class="anchor" href="#shotchart"><span class="octicon octicon-link"></span></a><code>.shotchart()</code>
+</h4>
+
+<p>This method of the returns detailed information about all of a players shots that you have chosen. The table above is an example of the type of data that this method returns.</p>
+
+<h4>
+<a name="leagueaverage" class="anchor" href="#leagueaverage"><span class="octicon octicon-link"></span></a><code>.leagueaverage()</code>
+</h4>
+
+<p>This method returns a table with league averages for shots taken and made from each of the identified zones on the court. This is not player specific information. It is league specific. If you invoke this method for different players during the same time period, the results should be identical.</p>
 
 <h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a name="customization" class="anchor" href="#customization"><span class="octicon octicon-link"></span></a>Customization</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>There are quite a few ways to customize the actual data that is collected from the website by adjusting the current code. Each of the potential changes are described below. Some variables have a discrete number of options. The options are listed underneath their respective variables. Default values are in <strong>bold</strong>.</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<ul>
+<li>
+<code>playerid</code> - no default value; Required</li>
+<li>
+<code>leagueid</code>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li><strong>00</strong></li>
+<li>20</li>
+</ul>
+</li>
+<li>
+<code>season</code> - Input in format of 20XX-XX
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<ul>
+<li><strong>2013-14</strong></li>
+</ul>
+</li>
+<li>
+<code>seasontype</code>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<ul>
+<li><strong>Regular Season</strong></li>
+<li>Playoffs</li>
+<li>All Star</li>
+</ul>
+</li>
+<li>
+<code>teamid</code> - Only useful if a player played on more than one team during a season. Allows you to pull all of the shots taken during a specific season while playing for a specific team. 
+
+<ul>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>gameid</code> - Used to select shots taken during a specific game
+
+<ul>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>outcome</code> - Selects shot taken during games with a specific outcome. 
+
+<ul>
+<li>W</li>
+<li>L</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>location</code> - Selects shots taken during games played at different locations
+
+<ul>
+<li>Home</li>
+<li>Road</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>month</code> - Selects shots taken during a specific month. 
+
+<ul>
+<li>
+<strong>0</strong> (all months)</li>
+</ul>
+</li>
+<li>
+<code>seasonsegment</code> - Selects shots taken during a segment of the season
+
+<ul>
+<li>Post All-Star</li>
+<li>Pre All-Star</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>datefrom</code> - Selects shots taken after a specific date; 2004-01-01 format
+
+<ul>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>dateto</code> - Selects shots taken before a specific date; 2004-01-01 format
+
+<ul>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>opponentteamid</code> - Selects shots taken against a specific team
+
+<ul>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>vsconf</code> - Selects shots taken against a specific conference
+
+<ul>
+<li>East</li>
+<li>West</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>vsdiv</code> - Selects shots taken against a specific division
+
+<ul>
+<li>Atlantic</li>
+<li>Central</li>
+<li>Northwest</li>
+<li>Pacific</li>
+<li>Southeast</li>
+<li>Southwest</li>
+<li>East</li>
+<li>West</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>position</code> - Selects shots taken when labeled as specific position; not useful
+
+<ul>
+<li>Guard</li>
+<li>Center</li>
+<li>Forward</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>gamesegment</code> - Selects shots taken during a specific segment of a game
+
+<ul>
+<li>First Half</li>
+<li>Overtime</li>
+<li>Second Half</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>period</code> - Selects shots taken during specific periods of games
+
+<ul>
+<li>
+<strong>0</strong> returns all shots</li>
+<li>Takes values 0-9</li>
+</ul>
+</li>
+<li>
+<code>lastngames</code> - Selects shots taken during past N games; Will not aggregate across seasons
+
+<ul>
+<li>
+<strong>0</strong> returns all games</li>
+</ul>
+</li>
+<li>
+<code>aheadbehind</code> - Selects shots taken during specific situations in a game
+
+<ul>
+<li>Ahead or Behind</li>
+<li>Ahead or Tied</li>
+<li>Behind or Tied</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+<li>
+<code>contextmeasure</code> - Description
+
+<ul>
+<li><strong>FGM</strong></li>
+<li>FGA</li>
+<li>FG_PCT</li>
+<li>FG3M</li>
+<li>FG3A</li>
+<li>FG3_PCT</li>
+<li>PF</li>
+<li>EFG_PCT</li>
+<li>TS_PCT</li>
+<li>PTS_FB</li>
+<li>PTS_OFF_TOV</li>
+<li>PTS_2ND_CHANCE</li>
+</ul>
+</li>
+<li>
+<code>clutchtime</code> - Selects shots taken during specific "clutch" times during a game
+
+<ul>
+<li>Last 5 Minutes</li>
+<li>Last 4 Minutes</li>
+<li>Last 3 Minutes</li>
+<li>Last 2 Minutes</li>
+<li>Last 1 Minute</li>
+<li>Last 30 Seconds</li>
+<li>Last 10 Seconds</li>
+<li><strong>blank</strong></li>
+</ul>
+</li>
+</ul><p>When you adjust these values, be sure the selected value is included as a string. For example, to select all of Paul George's shots taken during the last minute of every game he played during the 2012-13 season, you would run the following code:</p>
+
+<div class="highlight highlight-python"><pre><span class="n">george</span> <span class="o">=</span> <span class="n">nbastats</span><span class="o">.</span><span class="n">ShotChart</span><span class="p">(</span><span class="s">'202331'</span><span class="p">,</span> <span class="n">season</span><span class="o">=</span><span class="s">'2012-13'</span><span class="p">,</span> <span class="n">clutchtime</span><span class="o">=</span><span class="s">'Last 1 Minute'</span><span class="p">)</span>
+<span class="n">george</span><span class="o">.</span><span class="n">shotchart</span><span class="p">()</span>
+</pre></div>
+
+<hr><h2>
+<a name="boxscore-data" class="anchor" href="#boxscore-data"><span class="octicon octicon-link"></span></a>BoxScore Data</h2>
+
+<hr><h2>
+<a name="player-game-logs" class="anchor" href="#player-game-logs"><span class="octicon octicon-link"></span></a>Player Game Logs</h2>
+
+<hr><h2>
+<a name="play-by-play-data" class="anchor" href="#play-by-play-data"><span class="octicon octicon-link"></span></a>Play By Play Data</h2>
+
+<hr><h2>
+<a name="lineup-data" class="anchor" href="#lineup-data"><span class="octicon octicon-link"></span></a>Lineup Data</h2>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Nbadatacollection maintained by <a href="https://github.com/bradleyfay">bradleyfay</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-
-    
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>
