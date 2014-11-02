@@ -7,5 +7,6 @@ setup(name = 'nbastats',
 	author = 'Bradley Fay',
 	url = 'https://github.com/bradleyfay/nbadatacollection',
 	author_email = 'bradley.fay@gmail.com',
-	license = 'MIT'
+	license = 'MIT',
+        use_2to3 = True
 	)
