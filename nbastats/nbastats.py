@@ -92,7 +92,7 @@ class GameLog:
 
 class PlayByPlay:
     def __init__(self, gameid, startperiod=0, endperiod=0):
-        self._url = "http://stats.nba.com/stats/playbyplay?"
+        self._url = "http://stats.nba.com/stats/playbyplayv2?"
         self._api_param = {'GameID':gameid,
                           'StartPeriod': startperiod,
                           'EndPeriod':endperiod,
